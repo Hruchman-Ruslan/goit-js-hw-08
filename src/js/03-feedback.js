@@ -7,7 +7,6 @@ const emailRef = document.querySelector('input[name="email"]');
 const textareaRef = document.querySelector('textarea[name="message"]');
 
 const savedMessage = localStorage.getItem(STORAGE_KEY);
-const savedFormMessage = JSON.parse(savedMessage);
 const formData = savedMessage ? JSON.parse(savedMessage) : {};
 
 formRef.addEventListener(
@@ -20,8 +19,8 @@ formRef.addEventListener(
 
 const handleGetValue = () => {
   if (savedMessage) {
-    emailRef.value = savedFormMessage.email || '';
-    textareaRef.value = savedFormMessage.message || '';
+    emailRef.value = formData.email || '';
+    textareaRef.value = formData.message || '';
   }
 };
 

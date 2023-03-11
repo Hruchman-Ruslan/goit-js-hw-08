@@ -6,7 +6,9 @@ const formRef = document.querySelector('.feedback-form');
 const emailRef = document.querySelector('input[name="email"]');
 const textareaRef = document.querySelector('textarea[name="message"]');
 
-const formData = {};
+const savedMessage = localStorage.getItem(STORAGE_KEY);
+const savedFormMessage = JSON.parse(savedMessage);
+const formData = savedMessage ? JSON.parse(savedMessage) : {};
 
 formRef.addEventListener(
   'input',
@@ -17,9 +19,6 @@ formRef.addEventListener(
 );
 
 const handleGetValue = () => {
-  const savedMessage = localStorage.getItem(STORAGE_KEY);
-  const savedFormMessage = JSON.parse(savedMessage);
-
   if (savedMessage) {
     emailRef.value = savedFormMessage.email || '';
     textareaRef.value = savedFormMessage.message || '';
